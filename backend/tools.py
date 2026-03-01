@@ -1,6 +1,8 @@
 from tavily import TavilyClient
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 AVAILABLE_COOKWARE = {"Spatula", "Frying Pan", "Little Pot", 
                       "Stovetop", "Whisk", "Knife", "Ladle", "Spoon"}

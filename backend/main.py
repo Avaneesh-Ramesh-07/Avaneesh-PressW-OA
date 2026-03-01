@@ -7,6 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 # Import the data shapes we defined in models.py
 from models import ChatRequest, ChatResponse
 
+from agent import run_agent
+
 # Create the FastAPI app instance
 app = FastAPI()
 
@@ -20,9 +22,7 @@ app.add_middleware(
 )
 
 # Define the /chat endpoint, accepts POST requests
-# FastAPI automatically validates the request body against ChatRequest
-# and the return value against ChatResponse
-@app.post("/chat")
+@app.post("/query")
 def chat(request: ChatRequest) -> ChatResponse:
-    # Hardcoded response for now - will be replaced with a real agent call
-    return ChatResponse(response="it works", in_scope=True)
+    result = run_agent(request.message)
+    return ChatResponse(response=result["response"], in_scope=result["in_scope"])
