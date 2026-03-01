@@ -28,7 +28,6 @@ def run_agent(req):
     ]
 
     category = llm.invoke(messages).content
-    print("\n\n\n\n\n" + category)
 
     result["in_scope"] = (category != '0')
     if (not result["in_scope"]):
